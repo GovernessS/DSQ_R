@@ -293,7 +293,7 @@ data dtq;
     else if (61 <= ageinyr <= 69) then bcage=13;
     else if (70 <= ageinyr <= 99) then bcage=14;
 
-    *make age dummy variables ****; //Why?
+    *make age dummy variables ****;
 
     if (2 <= ageinyr <= 11) then kidgrp=1; //If they are between ages 2 and 11, then consider them a "kid"
       else kidgrp=0;
@@ -303,14 +303,14 @@ data dtq;
 run;
 
 data ntile;
-  set ntile.'CALIB.DSQ.CEREAL.NTILE'n; //Set ntile to data from Excel sheet
+  set ntile.'CALIB.DSQ.CEREAL.NTILE'n; 		//Set ntile to data from Excel sheet
 run;	 	 
 
-proc sort data=ntile; //Sort the variable ntile by food_codes
+proc sort data=ntile; 		//Sort the variable ntile by food_codes
   by food_code;
 run;
 
-data ntile (keep=cereal1fc cereal2fc whgnt sugnt calcnt fibnt); //wheat, sugar, calcium, fiber?
+data ntile (keep=cereal1fc cereal2fc whgnt sugnt calcnt fibnt);  //whole grain, sugar, calcium, fiber?
   set ntile;
   by food_code;
   if first.food_code;
